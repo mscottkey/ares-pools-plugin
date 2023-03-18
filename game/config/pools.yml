@@ -1,0 +1,21 @@
+---
+pools:
+    pool_ability: Wits
+    pool_multiplier: 2
+    pool_name: Reserve
+    pool_name_plural: Reserves
+    max_pool: 20
+    min_pool: -20
+    desperate_amount: 6
+    refresh_cron: {}
+    
+    permissions:
+      manage_pools: Set pools and show pool to others.
+
+    shortcuts: 
+        "pools": "pool"
+        "reserves": "pool"
+        "reserve/add": "pool/add"
+        "reserve/spend": "pool/spend"
+        "reserve/set": "pool/set"
+        "reserve/reset": "pool/reset"

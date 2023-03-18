@@ -1,0 +1,23 @@
+<li><hr role="separator" class="dropdown-divider"></li>
+
+<li><a href="#" {{action 'desperatePool'}} class="dropdown-item">Pool: Desperate</a></li>
+<li><a href="#" {{action (mut this.selectSpendPool) true}} class="dropdown-item">Spend Pool</a></li>
+<li><a href="#" {{action (mut this.selectAddPool) true}} class="dropdown-item">Add Pool</a></li>
+<li><a href="#" {{action 'resetPool'}} class="dropdown-item">Reset Pool</a></li>
+<li><a href="#" {{action 'showPool'}} class="dropdown-item">Show Pool</a></li>
+
+<BsModalSimple @title="Spend Pool Points" @closeTitle="Cancel" @submitTitle="Spend" @size={{null}} @fade={{true}} @open={{this.selectSpendPool}} @onSubmit={{action "spendPool"}} @onHide={{action (mut this.selectSpendPool) false}}>
+
+  <b>Amount:</b> <Input @type="number" step="1" size={{25}} id="poolSpendAmount" @enter={{action "spendPool"}} @value={{this.poolSpendAmount}} />
+    
+  <b>Reason:</b> <Input @type="text" size={{25}} id="poolSpendReason" @enter={{action "spendPool"}} @value={{this.poolSpendReason}} />
+
+</BsModalSimple>
+
+<BsModalSimple @title="Add Pool Points" @closeTitle="Cancel" @submitTitle="Add" @size={{null}} @fade={{true}} @open={{this.selectAddPool}} @onSubmit={{action "addPool"}} @onHide={{action (mut this.selectAddPool) false}}>
+
+  <b>Amount:</b> <Input @type="number" step="1" size={{25}} id="poolAddAmount" @enter={{action "addPool"}} @value={{this.poolAddAmount}} />
+    
+  <b>Reason:</b> <Input @type="text" size={{25}} id="poolAddReason" @enter={{action "addPool"}} @value={{this.poolAddReason}} />
+
+</BsModalSimple>
