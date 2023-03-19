@@ -17,7 +17,7 @@ module AresMUSH
 
       def handle
         ClassTargetFinder.with_a_character(self.name, client, enactor) do |model|          
-     Pools.show_pool(model, enactor_name, enactor_room.scene)
+          Pools.show_pool(model, enactor_name, enactor_room.scene)
         end
       end        
     end

@@ -26,16 +26,20 @@ module AresMUSH
         
       def check_pools
         return t('pools.pool_empty') if enactor.pool < Global.read_config("pools", "min_pool")
-        return t('pools.pool_full') if enactor.pool > Global.read_config("pools", "max_pool")
         return t('pools.pool_no_zero') if self.pool == 0
+        return t('pools.pool_empty', :pool_name => Global.read_cofig("pools", "pool_name_plural")) if self.pool <= 0
         return nil
       end
 
       def handle
         ClassTargetFinder.with_a_character(self.name, client, enactor) do |model|
-          Pools.pool_spend(model, self.pool, self.reason, enactor_room.scene)
+          if model.pool < 1
+             message = t('pools.pool_empty', :pool_name_plural => Global.read_config("pools", "pool_name_plural") )
+             client.emit_ooc message
+          else
+             Pools.pool_spend(model, self.pool, self.reason, enactor_room.scene)
+          end
       end
     end
   end
-end
 end

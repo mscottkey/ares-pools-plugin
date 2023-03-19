@@ -31,6 +31,21 @@ module AresMUSH
       return pool_max_value
     end
 
+    def self.pool_set(char, enactor_name, amount, reason, scene, enactor_room)
+      char.set_pool(amount)
+      Global.logger.info "Pool Points set to #{amount} by #{enactor_name} to #{char} for #{reason}"
+      pool_name =  Global.read_config("custom", "pool_name_plural")
+
+      message = t('custom.pool_set', :name => char.name, :pool => amount, :reason => reason, :pool_name => pool_name)
+     
+      if (scene)
+        scene.room.emit_ooc message
+        Scenes.add_to_scene(scene, message)
+      else
+        enactor_room.emit_ooc message
+      end
+    end
+
     def self.pool_spend(char, amount, reason, scene)
        char.spend_pool(amount.to_i)
        current_pool = char.pools_pool

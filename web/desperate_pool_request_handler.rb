@@ -32,7 +32,11 @@ module AresMUSH
           if (scene.completed)
             return { error: t('scenes.scene_already_completed') }
           end
-          
+         
+          if (sender.pool < 1)
+            return { error: t('pools.pool_empty', :pool_name_plural => Global.read_config("pools", "pool_name_plural") ) }
+          end
+
           Pools.pool_desperate(sender, enactor, scene)    
           {
           }
