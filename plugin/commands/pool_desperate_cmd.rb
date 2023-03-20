@@ -14,12 +14,6 @@ module AresMUSH
         return nil if Pools.can_manage_pools?(enactor)
         return t('dispatcher.not_allowed')
       end
-
-      def check_pools
-        return t('pools.pool_empty') if enactor.pool < Global.read_config("pools", "min_pool")
-        return t('pools.pool_empty', :pool_name => Global.read_cofig("pools", "pool_name_plural")) if self.pool <= 0
-        return nil
-      end
       
       def handle
         ClassTargetFinder.with_a_character(self.name, client, enactor) do |model|
