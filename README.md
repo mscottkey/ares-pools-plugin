@@ -11,14 +11,22 @@ Pools can be used for whatever you like generally. The config file allows for na
 
 Please note that pools are character based, meaning that you need to keep track of what your pool is set to across multiple scenes.
 
-## Web Portal
-
-Pools can be managed from the Play menu in scene. 
-
 ## Installation
 
 1. In the game, run `plugin/install <github url>`.
 
+## Web Portal
+
+Pools can be managed from the Play menu in scene. To enable this, you need to do the following:
+
+1. Go to .../ares-webportal/app/templates/components
+2. Open live-scene-play-custom.hbs
+3. Inser the line below into the file:
+
+<LiveScenePools @scene={{this.scene}} />
+
+4. Save the file
+5. website/deploy
 
 ## Uninstalling
 
