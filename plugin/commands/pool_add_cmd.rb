@@ -24,6 +24,12 @@ module AresMUSH
         [ self.name, self.pool, self.reason ]
       end
         
+      def check_can_add
+        return nil if enactor_name == self.name
+        return nil if Pools.can_manage_pools?(enactor)
+        return t('dispatcher.not_allowed')
+      end
+
       def check_pools
         return t('pools.pool_empty') if enactor.pool < Global.read_config("pools", "min_pool")
         return t('pools.pool_full') if enactor.pool > Global.read_config("pools", "max_pool")

@@ -10,7 +10,7 @@ en:
         show_pool: "%{enactor} shows that %{name} has a %{pool_name} of %{pool} out of %{pool_max} currently."
         show_pool_self: "You have a %{pool_name} of %{pool} currently."
         no_permission_to_view_pools: "You don't have permission to view or show other people's pools."
-        invalid_pool: "You must set your Pool to an integer."
+        invalid_pool: "You must set your %{pool_name} to an integer."
         pool_no_zero: "You must spend or add more than 0 Pool points. Please use pool/set if you want to set it to 0."
         pool_reset: "%{name} resets their %{pool_name} to %{pool}."
         pool_title: "Reserves:"

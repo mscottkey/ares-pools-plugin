@@ -23,6 +23,12 @@ module AresMUSH
       def required_args
         [ self.name, self.pool, self.reason ]
       end
+
+      def check_can_spend
+        return nil if enactor_name == self.name
+        return nil if Pools.can_manage_pools?(enactor)
+        return t('dispatcher.not_allowed')
+      end
         
       def check_pools
         return t('pools.pool_empty') if enactor.pool < Global.read_config("pools", "min_pool")

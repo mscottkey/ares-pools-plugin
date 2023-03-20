@@ -9,7 +9,7 @@ module AresMUSH
           self.name = !cmd.args ? enactor_name : titlecase_arg(cmd.args)          
       end
         
-      def check_can_show
+      def check_can_reset
         return nil if enactor_name == self.name
         return nil if Pools.can_manage_pools?(enactor)
         return t('dispatcher.not_allowed')

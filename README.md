@@ -30,7 +30,7 @@ Pools can be managed from the Play menu in scene. To enable this, you need to do
 
 ## Uninstalling
 
-Currently not supported.
+Uninstalling requires some work, please see See [Uninstalling Plugins](https://www.aresmush.com/tutorials/code/extras.html#uninstalling-plugins).
 
 ## License
 
