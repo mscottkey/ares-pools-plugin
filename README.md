@@ -21,7 +21,7 @@ Pools can be managed from the Play menu in scene. To enable this, you need to do
 
 1. Go to .../ares-webportal/app/templates/components
 2. Open live-scene-play-custom.hbs
-3. Inser the line below into the file:
+3. Insert the line below into the file:
 
 <LiveScenePools @scene={{this.scene}} />
 
