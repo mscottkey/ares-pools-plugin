@@ -76,7 +76,7 @@ module AresMUSH
    end
 
    def self.pool_desperate(char, enactor, scene)
-          pool_amount = char.pool
+          pool_amount = char.pools_pool
           pool_max = Pools.pool_char_max(char)
           desperate = Global.read_config("pools", "desperate_amount")
           new_pool_amount = pool_amount - desperate
