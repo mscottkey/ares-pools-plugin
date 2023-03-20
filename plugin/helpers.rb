@@ -36,7 +36,7 @@ module AresMUSH
       Global.logger.info "Pool Points set to #{amount} by #{enactor_name} to #{char} for #{reason}"
       pool_name =  Global.read_config("custom", "pool_name_plural")
 
-      message = t('custom.pool_set', :name => char.name, :pool => amount, :reason => reason, :pool_name => pool_name)
+      message = t('pools.pool_set', :name => char.name, :pool => amount, :reason => reason, :pool_name => pool_name)
      
       if (scene)
         scene.room.emit_ooc message
@@ -98,7 +98,7 @@ module AresMUSH
    end
 
    def self.pool_reset(char, enactor, scene)
-          pool_name_plural =  Global.read_config("pools", "pool_name_plural")
+          pool_name =  Global.read_config("pools", "pool_name_plural")
           pool_value = Pools.pool_char_max(char)
           char.set_pool(pool_value)
           
