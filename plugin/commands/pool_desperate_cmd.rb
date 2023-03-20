@@ -29,6 +29,7 @@ module AresMUSH
           else
              Pools.pool_desperate(model, enactor, enactor_room.scene)
           end
+        end
       end
     end
   end
