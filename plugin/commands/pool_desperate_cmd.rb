@@ -17,7 +17,7 @@ module AresMUSH
       
       def handle
         ClassTargetFinder.with_a_character(self.name, client, enactor) do |model|
-          if model.pool < 1
+          if model.pools_pool < 1
              message = t('pools.pool_empty', :pool_name_plural => Global.read_config("pools", "pool_name_plural") )
              client.emit_ooc message
           else
