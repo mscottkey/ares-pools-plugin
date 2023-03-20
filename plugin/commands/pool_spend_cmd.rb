@@ -39,6 +39,7 @@ module AresMUSH
           else
              Pools.pool_spend(model, self.pool, self.reason, enactor_room.scene)
           end
+        end  
       end
     end
   end
