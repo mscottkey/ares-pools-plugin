@@ -34,8 +34,7 @@ module AresMUSH
     def self.pool_set(char, enactor_name, amount, reason, scene)
       char.set_pool(amount)
       Global.logger.info "Pool Points set to #{amount} by #{enactor_name} to #{char} for #{reason}"
-      pool_name =  Global.read_config("pool", "pool_name_plural")
-
+      pool_name =  Global.read_config("pools", "pool_name_plural")
       message = t('pools.pool_set', :name => char.name, :pool => amount, :reason => reason, :pool_name => pool_name)
      
       if (scene)
