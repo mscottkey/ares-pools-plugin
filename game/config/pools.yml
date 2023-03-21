@@ -6,6 +6,7 @@ pools:
     pool_name_plural: Reserves
     max_pool: 20
     min_pool: -20
+    min_pool_spend: 0
     desperate_amount: 6
     refresh_cron: {}
     
