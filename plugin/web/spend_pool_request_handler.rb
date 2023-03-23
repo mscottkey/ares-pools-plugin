@@ -39,7 +39,7 @@ module AresMUSH
             return { error: t('pools.pool_empty', :pool_name_plural => Global.read_config("pools", "pool_name_plural") ) }
           end  
 
-          Pools.pool_spend(sender, amount, reason, scene)
+          Pools.pool_spend(sender, amount, reason, scene.room)
          
           {
           }

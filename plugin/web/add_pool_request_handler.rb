@@ -35,7 +35,7 @@ module AresMUSH
             return { error: t('scenes.scene_already_completed') }
           end
           
-          Pools.pool_add(sender, amount, reason, scene)
+          Pools.pool_add(sender, amount, reason, scene.room)
          
           {
           }

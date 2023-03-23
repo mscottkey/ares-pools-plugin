@@ -33,7 +33,7 @@ module AresMUSH
             return { error: t('scenes.scene_already_completed') }
           end
           
-          Pools.pool_reset(sender, enactor, scene)    
+          Pools.pool_reset(sender, enactor, scene.room)    
           {
           }
         end
