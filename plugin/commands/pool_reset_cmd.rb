@@ -17,7 +17,7 @@ module AresMUSH
     
       def handle
         ClassTargetFinder.with_a_character(self.name, client, enactor) do |model|
-          Pools.pool_reset(model, enactor, enactor_room.scene)
+          Pools.pool_reset(model, enactor, model.room)
       end
     end
   end

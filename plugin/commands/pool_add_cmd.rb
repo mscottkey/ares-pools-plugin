@@ -40,7 +40,7 @@ module AresMUSH
 
       def handle
         ClassTargetFinder.with_a_character(self.name, client, enactor) do |model|
-          Pools.pool_add(model, self.pool, self.reason, enactor_room.scene)
+          Pools.pool_add(model, self.pool, self.reason, model.room)
       end
     end
   end

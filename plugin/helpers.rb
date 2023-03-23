@@ -31,51 +31,51 @@ module AresMUSH
       return pool_max_value
     end
 
-    def self.pool_set(char, enactor_name, amount, reason, scene)
+    def self.pool_set(char, enactor_name, amount, reason, room)
       char.set_pool(amount)
       Global.logger.info "Pool Points set to #{amount} by #{enactor_name} to #{char} for #{reason}"
       pool_name =  Global.read_config("pools", "pool_name_plural")
       message = t('pools.pool_set', :name => char.name, :pool => amount, :reason => reason, :pool_name => pool_name)
      
-      if (scene)
-        scene.room.emit_ooc message
-        Scenes.add_to_scene(scene, message)
+      if (room.scene)
+        room.emit_ooc message
+        Scenes.add_to_scene(room, message)
       else
-        char.room.emit_ooc message
+        room.emit_ooc message
       end
     end
 
-    def self.pool_spend(char, amount, reason, scene)
+    def self.pool_spend(char, amount, reason, room)
        char.spend_pool(amount.to_i)
        current_pool = char.pools_pool
        pool_max = Pools.pool_char_max(char)
        pool_name =  Global.read_config("pools", "pool_name")
        message = t('pools.pool_spent', :name => char.name, :pool => amount, :total => current_pool, :pool_max => pool_max, :reason => reason, :pool_name => pool_name)
          
-       if (scene)
-          scene.room.emit_ooc message
-          Scenes.add_to_scene(scene, message)
+       if (room.scene)
+          room.emit_ooc message
+          Scenes.add_to_scene(room, message)
        else
-          char.room.emit_ooc message
+          room.emit_ooc message
        end
    end
 
-   def self.pool_add(char, amount, reason, scene)
+   def self.pool_add(char, amount, reason, room)
        char.add_pool(amount.to_i)
        current_pool = char.pools_pool
        pool_name =  Global.read_config("pools", "pool_name")
        pool_max = Pools.pool_char_max(char)
        message = t('pools.pool_added', :name => char.name, :pool => amount, :total => current_pool, :pool_max => pool_max, :reason => reason, :pool_name => pool_name)
          
-       if (scene)
-          scene.room.emit_ooc message
-          Scenes.add_to_scene(scene, message)
+       if (room.scene)
+          room.emit_ooc message
+          Scenes.add_to_scene(room, message)
        else
-        char.room.emit_ooc message
+        room.emit_ooc message
        end
    end
 
-   def self.pool_desperate(char, enactor, scene)
+   def self.pool_desperate(char, enactor, room)
           pool_amount = char.pools_pool
           pool_max = Pools.pool_char_max(char)
           desperate = Global.read_config("pools", "desperate_amount")
@@ -88,39 +88,39 @@ module AresMUSH
           pool_name_plural =  Global.read_config("pools", "pool_name_plural")
           
           message = t('pools.pool_desperate', :name => char.name, :amount => desperate, :pool_max => pool_max, :pool => new_pool_amount, :pool_name => pool_name, :pool_name_plural => pool_name_plural)
-       if (scene)
-          scene.room.emit_ooc message
-          Scenes.add_to_scene(scene, message)
+       if (room.scene)
+          room.emit_ooc message
+          Scenes.add_to_scene(room, message)
        else
-          char.room.emit_ooc message
+          room.emit_ooc message
        end
    end
 
-   def self.pool_reset(char, enactor, scene)
+   def self.pool_reset(char, enactor, room)
           pool_name =  Global.read_config("pools", "pool_name_plural")
           pool_value = Pools.pool_char_max(char)
           char.set_pool(pool_value)
           
           message = t('pools.pool_reset', :name => char.name, :pool => pool_value, :pool_name => pool_name)
-       if (scene)
-          scene.room.emit_ooc message
-          Scenes.add_to_scene(scene, message)
+       if (room.scene)
+          room.emit_ooc message
+          Scenes.add_to_scene(room, message)
        else
-          char.room.emit_ooc message
+          room.emit_ooc message
        end
    end
 
-   def self.show_pool(char, enactor_name, scene)
+   def self.show_pool(char, enactor_name, room)
         pool_name =  Global.read_config("pools", "pool_name")
         pool_name_plural =  Global.read_config("pools", "pool_name_plural")
         pool_max = Pools.pool_char_max(char)
         message = t('pools.show_pool', :enactor => enactor_name, :name => char.name, :pool => char.pool, :pool_max => pool_max, :pool_name => pool_name, :pool_name_plural => pool_name_plural)
 
-        if (scene)
-          scene.room.emit_ooc message
-          Scenes.add_to_scene(scene, message)
+        if (room.scene)
+          room.emit_ooc message
+          Scenes.add_to_scene(room, message)
         else
-          char.room.emit_ooc message
+          room.emit_ooc message
         end
     end
   end

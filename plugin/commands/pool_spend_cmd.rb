@@ -42,7 +42,7 @@ module AresMUSH
              message = t('pools.pool_empty', :pool_name_plural => Global.read_config("pools", "pool_name_plural") )
              client.emit_ooc message
           else
-             Pools.pool_spend(model, self.pool, self.reason, enactor_room.scene)
+             Pools.pool_spend(model, self.pool, self.reason, char.room)
           end
         end  
       end
