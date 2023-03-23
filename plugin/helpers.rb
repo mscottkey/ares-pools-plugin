@@ -39,7 +39,7 @@ module AresMUSH
      
       if (room.scene)
         room.emit_ooc message
-        Scenes.add_to_scene(room, message)
+        Scenes.add_to_scene(room.scene, message)
       else
         room.emit_ooc message
       end
@@ -54,7 +54,7 @@ module AresMUSH
          
        if (room.scene)
           room.emit_ooc message
-          Scenes.add_to_scene(room, message)
+          Scenes.add_to_scene(room.scene, message)
        else
           room.emit_ooc message
        end
@@ -69,7 +69,7 @@ module AresMUSH
          
        if (room.scene)
           room.emit_ooc message
-          Scenes.add_to_scene(room, message)
+          Scenes.add_to_scene(room.scene, message)
        else
         room.emit_ooc message
        end
@@ -90,7 +90,7 @@ module AresMUSH
           message = t('pools.pool_desperate', :name => char.name, :amount => desperate, :pool_max => pool_max, :pool => new_pool_amount, :pool_name => pool_name, :pool_name_plural => pool_name_plural)
        if (room.scene)
           room.emit_ooc message
-          Scenes.add_to_scene(room, message)
+          Scenes.add_to_scene(room.scene, message)
        else
           room.emit_ooc message
        end
@@ -104,7 +104,7 @@ module AresMUSH
           message = t('pools.pool_reset', :name => char.name, :pool => pool_value, :pool_name => pool_name)
        if (room.scene)
           room.emit_ooc message
-          Scenes.add_to_scene(room, message)
+          Scenes.add_to_scene(room.scene, message)
        else
           room.emit_ooc message
        end
@@ -118,7 +118,7 @@ module AresMUSH
 
         if (room.scene)
           room.emit_ooc message
-          Scenes.add_to_scene(room, message)
+          Scenes.add_to_scene(room.scene, message)
         else
           room.emit_ooc message
         end
