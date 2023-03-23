@@ -18,7 +18,8 @@ module AresMUSH
       def handle
          pool_name =  Global.read_config("pools", "pool_name")
          ClassTargetFinder.with_a_character(self.name, client, enactor) do |model|
-           message = t('pools.show_pool_self', :name => self.name, :pool_name => pool_name, :pool => model.pool )
+           pool_max = Pools.pool_char_max(model)
+           message = t('pools.show_pool_self', :name => self.name, :pool_name => pool_name, :pool => model.pool, :pool_max => pool_max )
            client.emit_ooc message
          end
       end
