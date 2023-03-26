@@ -28,6 +28,29 @@ Pools can be managed from the Play menu in scene. To enable this, you need to do
 4. Save the file
 5. website/deploy
 
+## Web Portal - Change Pools to something else
+
+If you want the word Pools replaced with whatever you call this resource (Reserves, Mana, Blood, etc), then you will need to edit the live-scene-pools.hbs file as shown below. 
+
+NOTE: DO NOT change anything inside of {{action ...}}, you will break the functionality. You just want to change the >Pool Command</a> part.
+
+<li><a href="#" {{action 'desperatePool'}} class="dropdown-item">Pool: Desperate</a></li> --> Change Pool: Desperate to whatever you want
+<li><a href="#" {{action (mut this.selectSpendPool) true}} class="dropdown-item">Spend Pool</a></li> --> Change Spend Pool
+<li><a href="#" {{action (mut this.selectAddPool) true}} class="dropdown-item">Add Pool</a></li> --> Change Add Pool
+<li><a href="#" {{action 'resetPool'}} class="dropdown-item">Reset Pool</a></li> --> Change Reset Pool
+<li><a href="#" {{action 'showPool'}} class="dropdown-item">Show Pool</a></li> --> Change Show Pool
+
+And here (Only modify @title):
+
+<BsModalSimple @title="Spend Pool Points" @closeTitle="Cancel" @submitTitle="Spend" @size={{null}} @fade={{true}} @open={{this.selectSpendPool}} @onSubmit={{action "spendPool"}} @onHide={{action (mut this.selectSpendPool) false}}>
+
+Finally here (Only modify @title):
+
+<BsModalSimple @title="Add Pool Points" @closeTitle="Cancel" @submitTitle="Add" @size={{null}} @fade={{true}} @open={{this.selectAddPool}} @onSubmit={{action "addPool"}} @onHide={{action (mut this.selectAddPool) false}}>
+
+
+Change 
+
 ## Uninstalling
 
 Uninstalling requires some work, please see See [Uninstalling Plugins](https://www.aresmush.com/tutorials/code/extras.html#uninstalling-plugins).
