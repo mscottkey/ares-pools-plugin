@@ -15,6 +15,30 @@ Please note that pools are character based, meaning that you need to keep track 
 
 1. In the game, run `plugin/install <github url>`.
 
+## CSS
+
+The Pools code adds 4 commands to your Play Menu. To make this easier to manage, I've nested them into a menu/submenu structure in the plugin. To support this, please copy the CSS below into your Custom CSS file in the web portal:
+
+``` CSS
+.dropdown-menu li {
+position: relative;
+}
+.dropdown-menu .dropdown-submenu {
+display: none;
+position: absolute;
+left: 100%;
+top: -7px;
+}
+.dropdown-menu .dropdown-submenu-left {
+right: 100%;
+left: auto;
+}
+.dropdown-menu > li:hover > .dropdown-submenu {
+display: block;
+}
+```
+NOTE: If you don't want to use the nested menus, you will need to customize the live-scene-custom-play.hbs file to remove the nesting. If you are unsure of how to do this, please ask.
+
 ## Web Portal
 
 Pools can be managed from the Play menu in scene. To enable this, you need to do the following:
@@ -23,7 +47,9 @@ Pools can be managed from the Play menu in scene. To enable this, you need to do
 2. Open live-scene-play-custom.hbs
 3. Insert the line below into the file:
 
+``` HTML
 <LiveScenePools @scene={{this.scene}} />
+```
 
 4. Save the file
 5. website/deploy
@@ -34,22 +60,30 @@ If you want the word Pools replaced with whatever you call this resource (Reserv
 
 NOTE: DO NOT change anything inside of {{action ...}}, you will break the functionality. You just want to change the >Pool Command</a> part.
 
-<li><a href="#" {{action 'desperatePool'}} class="dropdown-item">Pool: Desperate</a></li> --> Change Pool: Desperate to whatever you want
-<li><a href="#" {{action (mut this.selectSpendPool) true}} class="dropdown-item">Spend Pool</a></li> --> Change Spend Pool
-<li><a href="#" {{action (mut this.selectAddPool) true}} class="dropdown-item">Add Pool</a></li> --> Change Add Pool
-<li><a href="#" {{action 'resetPool'}} class="dropdown-item">Reset Pool</a></li> --> Change Reset Pool
-<li><a href="#" {{action 'showPool'}} class="dropdown-item">Show Pool</a></li> --> Change Show Pool
+``` html
+<li> <a class="dropdown-item" href="#">
+        Pools &raquo;
+      </a>
+      <ul class="dropdown-menu dropdown-submenu">
+        <li><a class="dropdown-item" href="#" {{action 'desperatePool'}} class="dropdown-item">Pool: Desperate</a></li>
+        <li><a class="dropdown-item" href="#" {{action (mut this.selectSpendPool) true}} class="dropdown-item">Spend Pool</a></li>
+        <li><a class="dropdown-item" href="#" {{action (mut this.selectAddPool) true}} class="dropdown-item">Add Pool</a></li>
+        <li><a class="dropdown-item" href="#" {{action 'resetPool'}} class="dropdown-item">Reset Pool</a></li>
+        <li><a class="dropdown-item" href="#" {{action 'showPool'}} class="dropdown-item">Show Pool</a></li>
+      </ul>
+</li>
+```
+
 
 And here (Only modify @title):
 
+``` HTML
 <BsModalSimple @title="Spend Pool Points" @closeTitle="Cancel" @submitTitle="Spend" @size={{null}} @fade={{true}} @open={{this.selectSpendPool}} @onSubmit={{action "spendPool"}} @onHide={{action (mut this.selectSpendPool) false}}>
 
 Finally here (Only modify @title):
 
 <BsModalSimple @title="Add Pool Points" @closeTitle="Cancel" @submitTitle="Add" @size={{null}} @fade={{true}} @open={{this.selectAddPool}} @onSubmit={{action "addPool"}} @onHide={{action (mut this.selectAddPool) false}}>
-
-
-Change 
+```
 
 ## Uninstalling
 
