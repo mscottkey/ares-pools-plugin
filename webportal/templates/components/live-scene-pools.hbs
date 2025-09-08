@@ -5,25 +5,25 @@
       </a>
       <ul class="dropdown-menu dropdown-submenu">
         <li><a class="dropdown-item" href="#" {{on 'click' this.desperatePool}} class="dropdown-item">Pool: Desperate</a></li>
-        <li><a class="dropdown-item" href="#" {{on 'click' (fn this.setSelectSpendPool true)}} class="dropdown-item">Spend Pool</a></li>
-        <li><a class="dropdown-item" href="#" {{on 'click' (fn this.setSelectAddPool true)}} class="dropdown-item">Add Pool</a></li>
+        <li><a class="dropdown-item" href="#" {{action (mut this.selectSpendPool) true}} class="dropdown-item">Spend Pool</a></li>
+        <li><a class="dropdown-item" href="#" {{action (mut this.selectAddPool) true}} class="dropdown-item">Add Pool</a></li>
         <li><a class="dropdown-item" href="#" {{on 'click' this.resetPool}} class="dropdown-item">Reset Pool</a></li>
         <li><a class="dropdown-item" href="#" {{on 'click' this.showPool}} class="dropdown-item">Show Pool</a></li>
       </ul>
 </li>
 
-<BsModalSimple @title="Spend Pool Points" @closeTitle="Cancel" @submitTitle="Spend" @size={{null}} @fade={{true}} @open={{this.selectSpendPool}} @onSubmit={{this.spendPool}} @onHide={{this.setSelectSpendPoolFalse}}>
+<BsModalSimple @title="Spend Pool Points" @closeTitle="Cancel" @submitTitle="Spend" @size={{null}} @fade={{true}} @open={{this.selectSpendPool}} @onSubmit={{action "spendPool"}} @onHide={{action (mut this.selectSpendPool) false}}>
 
-  <b>Amount:</b> <Input @type="number" step="1" size={{25}} id="poolSpendAmount" @enter={{this.spendPool}} @value={{this.poolSpendAmount}} {{on 'input' (fn this.updateProperty 'poolSpendAmount')}} />
+  <b>Amount:</b> <Input @type="number" step="1" size={{25}} id="poolSpendAmount" @enter={{action "spendPool"}} @value={{this.poolSpendAmount}} />
     
-  <b>Reason:</b> <Input @type="text" size={{25}} id="poolSpendReason" @enter={{this.spendPool}} @value={{this.poolSpendReason}} {{on 'input' (fn this.updateProperty 'poolSpendReason')}} />
+  <b>Reason:</b> <Input @type="text" size={{25}} id="poolSpendReason" @enter={{action "spendPool"}} @value={{this.poolSpendReason}} />
 
 </BsModalSimple>
 
-<BsModalSimple @title="Add Pool Points" @closeTitle="Cancel" @submitTitle="Add" @size={{null}} @fade={{true}} @open={{this.selectAddPool}} @onSubmit={{this.addPool}} @onHide={{this.setSelectAddPoolFalse}}>
+<BsModalSimple @title="Add Pool Points" @closeTitle="Cancel" @submitTitle="Add" @size={{null}} @fade={{true}} @open={{this.selectAddPool}} @onSubmit={{action "addPool"}} @onHide={{action (mut this.selectAddPool) false}}>
 
-  <b>Amount:</b> <Input @type="number" step="1" size={{25}} id="poolAddAmount" @enter={{this.addPool}} @value={{this.poolAddAmount}} {{on 'input' (fn this.updateProperty 'poolAddAmount')}} />
+  <b>Amount:</b> <Input @type="number" step="1" size={{25}} id="poolAddAmount" @enter={{action "addPool"}} @value={{this.poolAddAmount}} />
     
-  <b>Reason:</b> <Input @type="text" size={{25}} id="poolAddReason" @enter={{this.addPool}} @value={{this.poolAddReason}} {{on 'input' (fn this.updateProperty 'poolAddReason')}} />
+  <b>Reason:</b> <Input @type="text" size={{25}} id="poolAddReason" @enter={{action "addPool"}} @value={{this.poolAddReason}} />
 
 </BsModalSimple>
