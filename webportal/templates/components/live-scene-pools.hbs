@@ -14,16 +14,16 @@
 
 <BsModalSimple @title="Spend Pool Points" @closeTitle="Cancel" @submitTitle="Spend" @size={{null}} @fade={{true}} @open={{this.selectSpendPool}} @onSubmit={{this.spendPool}} @onHide={{this.setSelectSpendPoolFalse}}>
 
-  <b>Amount:</b> <Input @type="number" step="1" size={{25}} id="poolSpendAmount" @enter={{this.spendPool}} @value={{this.poolSpendAmount}} />
+  <b>Amount:</b> <Input @type="number" step="1" size={{25}} id="poolSpendAmount" @enter={{this.spendPool}} @value={{this.poolSpendAmount}} {{on 'input' (fn this.updateProperty 'poolSpendAmount')}} />
     
-  <b>Reason:</b> <Input @type="text" size={{25}} id="poolSpendReason" @enter={{this.spendPool}} @value={{this.poolSpendReason}} />
+  <b>Reason:</b> <Input @type="text" size={{25}} id="poolSpendReason" @enter={{this.spendPool}} @value={{this.poolSpendReason}} {{on 'input' (fn this.updateProperty 'poolSpendReason')}} />
 
 </BsModalSimple>
 
 <BsModalSimple @title="Add Pool Points" @closeTitle="Cancel" @submitTitle="Add" @size={{null}} @fade={{true}} @open={{this.selectAddPool}} @onSubmit={{this.addPool}} @onHide={{this.setSelectAddPoolFalse}}>
 
-  <b>Amount:</b> <Input @type="number" step="1" size={{25}} id="poolAddAmount" @enter={{this.addPool}} @value={{this.poolAddAmount}} />
+  <b>Amount:</b> <Input @type="number" step="1" size={{25}} id="poolAddAmount" @enter={{this.addPool}} @value={{this.poolAddAmount}} {{on 'input' (fn this.updateProperty 'poolAddAmount')}} />
     
-  <b>Reason:</b> <Input @type="text" size={{25}} id="poolAddReason" @enter={{this.addPool}} @value={{this.poolAddReason}} />
+  <b>Reason:</b> <Input @type="text" size={{25}} id="poolAddReason" @enter={{this.addPool}} @value={{this.poolAddReason}} {{on 'input' (fn this.updateProperty 'poolAddReason')}} />
 
 </BsModalSimple>

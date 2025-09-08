@@ -17,8 +17,26 @@ export default class LiveScenePoolsComponent extends Component {
   @tracked poolAddAmount = null;
   @tracked poolSpendAmount = null;
 
+  get scene() {
+    return this.args.scene;
+  }
+
+  get poseChar() {
+    return this.scene && this.scene.poseChar;
+  }
+
+  @action
+  updateProperty(property, event) {
+    this[property] = event.target.value;
+  }
+
   @action
   spendPool() {
+    if (!this.poseChar) {
+      this.flashMessages.danger("Scene data is not available.");
+      return;
+    }
+
     if (!this.poolSpendReason) {
       this.flashMessages.danger("You haven't given a reason for your Pool spend.");
       return;
@@ -30,25 +48,29 @@ export default class LiveScenePoolsComponent extends Component {
     }
     
     this.gameApi.requestOne('spendPool', { 
-      scene_id: this.args.scene.id,
+      scene_id: this.scene.id,
       reason: this.poolSpendReason, 
       amount: this.poolSpendAmount, 
-      sender: this.args.scene.poseChar.name 
+      sender: this.poseChar.name 
     }, null)
     .then( (response) => {
       if (response.error) {
         console.log(response.error);
         return;
       }
+      this.selectSpendPool = false;
+      this.poolSpendReason = null;
+      this.poolSpendAmount = null;
     });
-
-    this.selectSpendPool = false;
-    this.poolSpendReason = null;
-    this.poolSpendAmount = null;
   }
 
   @action
   addPool() {
+    if (!this.poseChar) {
+      this.flashMessages.danger("Scene data is not available.");
+      return;
+    }
+
     if (!this.poolAddAmount) {
       this.flashMessages.danger("You haven't given a value for your pool add.");
       return;
@@ -60,42 +82,50 @@ export default class LiveScenePoolsComponent extends Component {
     }
 
     this.gameApi.requestOne('addPool', { 
-      scene_id: this.args.scene.id,
+      scene_id: this.scene.id,
       reason: this.poolAddReason, 
       amount: this.poolAddAmount, 
-      sender: this.args.scene.poseChar.name 
+      sender: this.poseChar.name 
     }, null)
     .then( (response) => {
       if (response.error) {
         return;
       }
+      this.selectAddPool = false;
+      this.poolAddAmount = null;
+      this.poolAddReason = null;
     });
-
-    this.selectAddPool = false;
-    this.poolAddAmount = null;
-    this.poolAddReason = null;
   }
 
   @action
   resetPool() {
+    if (!this.poseChar) {
+      this.flashMessages.danger("Scene data is not available.");
+      return;
+    }
+
     this.gameApi.requestOne('resetPool', { 
-      scene_id: this.args.scene.id,
-      sender: this.args.scene.poseChar.name 
+      scene_id: this.scene.id,
+      sender: this.poseChar.name 
     }, null)
     .then( (response) => {
       if (response.error) {
         return;
       }
+      this.selectResetPool = false;
     });
-
-    this.selectResetPool = false;
   }
 
   @action
   desperatePool() {
+    if (!this.poseChar) {
+      this.flashMessages.danger("Scene data is not available.");
+      return;
+    }
+
     this.gameApi.requestOne('desperatePool', { 
-      scene_id: this.args.scene.id,
-      sender: this.args.scene.poseChar.name 
+      scene_id: this.scene.id,
+      sender: this.poseChar.name 
     }, null)
     .then( (response) => {
       if (response.error) {
@@ -106,18 +136,22 @@ export default class LiveScenePoolsComponent extends Component {
 
   @action
   showPool() {
+    if (!this.poseChar) {
+      this.flashMessages.danger("Scene data is not available.");
+      return;
+    }
+    
     this.gameApi.requestOne('showPool', { 
-      scene_id: this.args.scene.id,
-      sender: this.args.scene.poseChar.name 
+      scene_id: this.scene.id,
+      sender: this.poseChar.name 
     }, null)
     .then( (response) => {
       if (response.error) {
         console.log(response.error);
         return;
       }
+      this.selectShowPool = false;
     });
-    
-    this.selectShowPool = false;
   }
 
   @action
